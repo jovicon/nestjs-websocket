@@ -1,6 +1,6 @@
 {
-  "name": "nestjs-clean-architecture-template",
-  "version": "1.8.1",
+  "name": "nestjs-clean-websocket-template",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,

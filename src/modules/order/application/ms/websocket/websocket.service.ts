@@ -54,9 +54,12 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection, OnG
     };
   }
 
+  // SE PUEDE DESACOPLAR EL ENVIO DE MENSAJES A UN CASO DE USO
   @SubscribeMessage('JoinRoom')
   async createRoom(client: Socket, data: CreateRoomMessage) {
     const { roomId } = data.detail.data;
+
+    console.log('JoinRoom - data: ', roomId);
 
     await client.join(roomId);
     client.to(roomId).emit('WelcomeRoom', { room: roomId });
@@ -70,9 +73,12 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection, OnG
     };
   }
 
+  // SE PUEDE DESACOPLAR EL ENVIO DE MENSAJES A UN CASO DE USO
   @SubscribeMessage('MessageRoom')
   roomMessage(client: Socket, data: RoomMessageEvent) {
     const { roomId, message } = data.detail.data;
+
+    console.log('MessageRoom - data: ', roomId, message);
 
     client.to(roomId).emit('message', { room: roomId, message });
 
